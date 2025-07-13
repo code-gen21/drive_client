@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   async function getDirectoryItems() {
-    const response = await fetch("https://drive-three-henna.vercel.app/");
+    const response = await fetch("https://drive-server-svlj.onrender.com/");
     const data = await response.json();
     // console.log(data);
     setDirectoryItems(data);
@@ -45,7 +45,7 @@ function App() {
     }
     console.log("Uploading file....");
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://drive-three-henna.vercel.app/", true);
+    xhr.open("POST", "https://drive-server-svlj.onrender.com/", true);
     xhr.setRequestHeader("filename", name2);
     xhr.addEventListener("load", (e) => {
       // console.log(xhr.response);
@@ -66,7 +66,7 @@ function App() {
   async function handleDelete(filename) {
     // console.log(filename);
     const response = await fetch(
-      "https://drive-three-henna.vercel.app/delete",
+      "https://drive-server-svlj.onrender.com/delete",
       {
         method: "DELETE",
         headers: { file: filename },
@@ -94,7 +94,7 @@ function App() {
       console.log("A file with this name already exists in server");
       return;
     }
-    const response = await fetch("https://drive-three-henna.vercel.app/", {
+    const response = await fetch("https://drive-server-svlj.onrender.com/", {
       method: "PATCH",
       body: JSON.stringify({ oldFilename, newFilename }),
     });
@@ -157,7 +157,7 @@ function App() {
                 <div className="icon-text preview">
                   <FaEye />
                   <a
-                    href={`https://drive-three-henna.vercel.app/${item}?action=preview`}
+                    href={`https://drive-server-svlj.onrender.com/${item}?action=preview`}
                   >
                     Preview{" "}
                   </a>
@@ -166,7 +166,7 @@ function App() {
                 <div className="icon-text download">
                   <FaDownload />
                   <a
-                    href={`https://drive-three-henna.vercel.app/${item}?action=download`}
+                    href={`https://drive-server-svlj.onrender.com/${item}?action=download`}
                   >
                     Download{" "}
                   </a>
