@@ -86,17 +86,30 @@ function App() {
     setOldName(oldFilename);
   }
   async function saveFilename(oldFilename) {
+    const changeNameErrorContainer = document.querySelector(".changeNameError");
     if (newFilename === "") {
+      changeNameErrorContainer.innerHTML = "Enter some value";
       console.log("Enter some value");
       return;
     }
-    if (!checkFilename(newFilename)) {
-      console.log("A file with this name already exists in server");
+    const updatedFileName = newFilename.replace(/ /g, "_");
+    // setNewFilename(name2);
+    console.log(updatedFileName);
+    if (!checkFilename(updatedFileName)) {
+      // console.log(changeNameContainer);
+      // changeNameErrorContainer.classList.add("visibilityBlock");
+
+      changeNameErrorContainer.innerHTML =
+        "A file with this name already exists in server. Please enter any other name";
+
+      // console.log("A file with this name already exists in server");
       return;
     }
+    // changeNameErrorContainer.classList.remove("visibilityBlock");
+    changeNameErrorContainer.innerHTML = "";
     const response = await fetch("https://drive-server-svlj.onrender.com/", {
       method: "PATCH",
-      body: JSON.stringify({ oldFilename, newFilename }),
+      body: JSON.stringify({ oldFilename, updatedFileName }),
     });
     const data = await response.text();
     console.log(data);
@@ -143,6 +156,7 @@ function App() {
           <button className="close">Close</button>
         </div>
       </div>
+      <div className="changeNameError"></div>
 
       <div className="directory-items">
         {/* <ul> */}

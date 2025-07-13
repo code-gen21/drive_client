@@ -41,6 +41,11 @@
 .visibilityBlock{
   display:block;
 }
+.changeNameError{
+  color:rgb(211, 10, 10);
+  margin:10px;
+  letter-spacing: 1.2px;
+}
 
 .items-list{
   padding:1em;
